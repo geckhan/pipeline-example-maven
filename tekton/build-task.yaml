@@ -25,6 +25,7 @@ spec:
       args:
         - clean
         - install
+        - -Dmaven.test.skip=true
     - name: test
       image: maven:3-jdk-7
       workingDir: /workspace/source
