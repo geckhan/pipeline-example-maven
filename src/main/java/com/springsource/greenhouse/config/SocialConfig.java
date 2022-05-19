@@ -38,8 +38,6 @@ import org.springframework.social.connect.web.ProviderSignInController;
 import org.springframework.social.facebook.api.Facebook;
 import org.springframework.social.facebook.api.impl.FacebookTemplate;
 import org.springframework.social.facebook.connect.FacebookConnectionFactory;
-import org.springframework.social.linkedin.connect.LinkedInConnectionFactory;
-import org.springframework.social.tripit.connect.TripItConnectionFactory;
 import org.springframework.social.twitter.api.Twitter;
 import org.springframework.social.twitter.api.impl.TwitterTemplate;
 import org.springframework.social.twitter.connect.TwitterConnectionFactory;
@@ -81,8 +79,6 @@ public class SocialConfig {
 		ConnectionFactoryRegistry registry = new ConnectionFactoryRegistry();
 		registry.addConnectionFactory(new TwitterConnectionFactory(environment.getProperty("twitter.consumerKey"), environment.getProperty("twitter.consumerSecret")));
 		registry.addConnectionFactory(new FacebookConnectionFactory(environment.getProperty("facebook.appId"), environment.getProperty("facebook.appSecret")));
-		registry.addConnectionFactory(new LinkedInConnectionFactory(environment.getProperty("linkedin.consumerKey"), environment.getProperty("linkedin.consumerSecret")));		
-		registry.addConnectionFactory(new TripItConnectionFactory(environment.getProperty("tripit.consumerKey"), environment.getProperty("tripit.consumerSecret")));
 		return registry;
 	}
 	
@@ -138,11 +134,7 @@ public class SocialConfig {
 		return twitter != null ? twitter.getApi() : new TwitterTemplate();
 	}
 
-	/**
-	 * The Spring MVC Controller that coordinates connections to service providers on behalf of users.
-	 * @param connectionRepositoryProvider needed to persist new connections
-	 * @param profilePictureService needed by the {@link FacebookConnectInterceptor} to make the user's Facebook profile picture their Greenhouse profile picture.
-	 */
+
 	@Bean
 	public ConnectController connectController(ProfilePictureService profilePictureService) {
 		ConnectController controller = new ConnectController(connectionFactoryLocator(), connectionRepository());
