@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+	
+    <!-- <localRepository>usr/local/maven</localRepository>   -->
+        
+
+    <interactiveMode>true</interactiveMode>  
+
+    <usePluginRegistry>false</usePluginRegistry>  
+        
+
+    <offline>false</offline>  
+
+
+    <servers>
+        <server>  
+          <id>bnx-repository</id>  
+          <username>docker-pull</username>  
+          <password>dockerpull</password>  
+        </server>  
+    </servers>
+ 
+
+    <mirrors>
+        <mirror>
+          <id>bnx-repository</id>
+          <name>bnx-repository</name>
+          <mirrorOf>external:http:*</mirrorOf>
+          <url>http://nexus.bx0vxmbd.link/repository/maven-public/</url>
+          <!-- <mirrorOf>central</mirrorOf>        -->
+          <blocked>false</blocked>
+        </mirror>
+    </mirrors>
+
+
+
+   <profiles>
+     <profile>
+       <id>Nexus</id>   
+       <repositories>
+            <repository>   
+                <id>bnx-repository</id>
+                <url>http://nexus.bx0vxmbd.link/repository/maven-public/</url>
+                <releases><enabled>true</enabled></releases>
+                 <snapshots><enabled>true</enabled></snapshots>
+            </repository>
+        </repositories>
+        <pluginRepositories> 
+            <pluginRepository> 
+                <id>bnx-repository</id> 
+                <name>bnx-repository</name> 
+                <url>http://nexus.bx0vxmbd.link/repository/maven-public/</url> 
+            </pluginRepository> 
+        </pluginRepositories> 
+       </profile>
+    </profiles>
+
+   <activeProfiles>     
+     <activeProfile>Nexus</activeProfile>
+   </activeProfiles>
+
+
+</settings>
